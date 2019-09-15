@@ -5,7 +5,6 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.interfaces.audioplayer.PlayBehavior;
 import com.amazon.ask.request.Predicates;
-import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
@@ -31,7 +30,7 @@ public class YoutubePlayIntentHandler implements RequestHandler {
 
         YoutubeStreamExtractor extractor = null;
 
-        NewPipe.init(NewPipe.getDownloader(), new Localization("GB", "en"));
+        NewPipe.init(Downloader.getInstance(), new Localization("GB", "en"));
         try {
             extractor = (YoutubeStreamExtractor) YouTube
                     .getStreamExtractor("https://www.youtube.com/watch?v=YQHsXMglC9A");

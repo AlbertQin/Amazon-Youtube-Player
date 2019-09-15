@@ -1,5 +1,6 @@
 C:\Users\alber\Desktop\Amazon Youtube Player\AmazonYoutubePlayer\src\main\java\handlers\CancelandStopIntentHandler.java
 C:\Users\alber\Desktop\Amazon Youtube Player\AmazonYoutubePlayer\src\main\java\handlers\HelpIntentHandler.java
+C:\Users\alber\Desktop\Amazon Youtube Player\AmazonYoutubePlayer\src\main\java\handlers\Downloader.java
 C:\Users\alber\Desktop\Amazon Youtube Player\AmazonYoutubePlayer\src\main\java\handlers\LaunchRequestHandler.java
 C:\Users\alber\Desktop\Amazon Youtube Player\AmazonYoutubePlayer\src\main\java\handlers\FallbackIntentHandler.java
 C:\Users\alber\Desktop\Amazon Youtube Player\AmazonYoutubePlayer\src\main\java\handlers\SessionEndedRequestHandler.java
