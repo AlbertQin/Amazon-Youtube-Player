@@ -19,6 +19,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech("Goodbye")
                 .withSimpleCard("YoutubePlayer", "Goodbye")
+                .addAudioPlayerStopDirective()
                 .build();
     }
 }
