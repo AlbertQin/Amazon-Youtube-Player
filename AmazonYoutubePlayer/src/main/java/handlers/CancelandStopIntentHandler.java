@@ -7,20 +7,18 @@ import static com.amazon.ask.request.Predicates.intentName;
 
 import java.util.Optional;
 
-public class HelpIntentHandler implements RequestHandler {
+public class CancelandStopIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.HelpIntent"));
+        return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "You can say hello to me!";
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
-                .withReprompt(speechText)
+                .withSpeech("Goodbye")
+                .withSimpleCard("YoutubePlayer", "Goodbye")
                 .build();
     }
 }
