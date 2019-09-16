@@ -74,6 +74,7 @@ public class YoutubeSearchExtractorDefaultTest extends YoutubeSearchExtractorBas
                 || (secondInfoItem instanceof ChannelInfoItem));
         assertEquals("name", "PewDiePie", channelItem.getName());
         assertEquals("url", "https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw", channelItem.getUrl());
+        System.out.println(secondInfoItem.getUrl());
     }
 
     @Test

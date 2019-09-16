@@ -5,8 +5,12 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.interfaces.audioplayer.PlayBehavior;
 import com.amazon.ask.request.Predicates;
+import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeSearchExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.utils.Localization;
 
@@ -28,19 +32,30 @@ public class YoutubePlayIntentHandler implements RequestHandler {
 
         String url = "";
 
-        YoutubeStreamExtractor extractor = null;
+        YoutubeStreamExtractor extractor;
+        YoutubeSearchExtractor searchExtractor;
+        ListExtractor.InfoItemsPage<InfoItem> itemsPage;
 
         NewPipe.init(Downloader.getInstance(), new Localization("GB", "en"));
         try {
+            searchExtractor = (YoutubeSearchExtractor) YouTube.getSearchExtractor("pewdiepie");
+            searchExtractor.fetchPage();
+            itemsPage = searchExtractor.getInitialPage();
+
+            InfoItem firstInfoItem = itemsPage.getItems().get(0);
+            InfoItem secondInfoItem = itemsPage.getItems().get(1);
+
+            InfoItem playerItem = (firstInfoItem instanceof ChannelInfoItem) ? secondInfoItem
+                    : firstInfoItem;
+
             extractor = (YoutubeStreamExtractor) YouTube
-                    .getStreamExtractor("https://www.youtube.com/watch?v=YQHsXMglC9A");
+                    .getStreamExtractor(playerItem.getUrl());
 
             extractor.fetchPage();
 
-            url = extractor.getAudioStreams().get(0).getUrl();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ExtractionException e) {
+            url = extractor.getAudioStreams().get(0).url;
+
+        } catch (ExtractionException | IOException e) {
             e.printStackTrace();
         }
 
