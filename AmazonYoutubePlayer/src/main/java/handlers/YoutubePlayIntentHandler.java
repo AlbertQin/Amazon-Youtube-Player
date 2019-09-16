@@ -34,8 +34,10 @@ public class YoutubePlayIntentHandler implements RequestHandler {
         //String url = "https://r5---sn-gvbxgn-t34e.googlevideo.com/videoplayback?expire=1568595134&ei=Xoh-XdifD4jqD_62urAJ&ip=99.250.71.41&id=o-AA9thMd1ciESCbCOJogBqX5dH47RpZ18ZNGVRjmPdICK&itag=140&source=youtube&requiressl=yes&mm=31%2C29&mn=sn-gvbxgn-t34e%2Csn-gvbxgn-tt1el&ms=au%2Crdu&mv=m&mvi=4&pl=18&initcwndbps=2125000&mime=audio%2Fmp4&gir=yes&clen=5938560&dur=366.898&lmt=1557008245453080&mt=1568573444&fvip=5&keepalive=yes&c=WEB&txp=5535432&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=mm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AHylml4wRQIgGS8500Lwsapu-WeGvozKGqyLdkCwCUNQJygIwiysyd0CIQCkBztl4geGpLN32LTkSSeeUVAHkwr6abB3gnsawrzCxQ%3D%3D&sig=ALgxI2wwRQIhANULgGB5aInGyXusNpqGR8sp3dkfXgJEsr1s0XI8p6v_AiBylNODQvZF96ZVMu3WSNi2Tec3iYUMPnFUsXMNko55rA==\n";
 
         String url = "";
+        String urlFallback = "";
 
         YoutubeStreamExtractor extractor;
+        YoutubeStreamExtractor extractorFallback;
         YoutubeSearchExtractor searchExtractor;
         ListExtractor.InfoItemsPage<InfoItem> itemsPage;
 
@@ -51,24 +53,34 @@ public class YoutubePlayIntentHandler implements RequestHandler {
             InfoItem firstInfoItem = itemsPage.getItems().get(0);
             InfoItem secondInfoItem = itemsPage.getItems().get(1);
 
-            InfoItem playerItem = (firstInfoItem instanceof ChannelInfoItem) ? secondInfoItem
-                    : firstInfoItem;
+            if(firstInfoItem instanceof ChannelInfoItem){
+                firstInfoItem = itemsPage.getItems().get(1);
+                secondInfoItem = itemsPage.getItems().get(2);
+            }
+
+            if(secondInfoItem instanceof ChannelInfoItem){
+                secondInfoItem = itemsPage.getItems().get(3);
+            }
 
             extractor = (YoutubeStreamExtractor) YouTube
-                    .getStreamExtractor(playerItem.getUrl());
+                    .getStreamExtractor(firstInfoItem.getUrl());
 
             extractor.fetchPage();
 
             url = extractor.getAudioStreams().get(0).url;
+
+            extractorFallback = (YoutubeStreamExtractor) YouTube
+                    .getStreamExtractor(secondInfoItem.getUrl());
+
+            urlFallback = extractorFallback.getAudioStreams().get(0).getUrl();
 
         } catch (ExtractionException | IOException e) {
             e.printStackTrace();
         }
 
         return input.getResponseBuilder()
-                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "", "001", url)
-                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "001", "002", url)
-                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "002", "003", url)
+                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("REPLACE_ALL"), (long) 0, "", "001", url)
+                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "001", "002", urlFallback)
                 .build();
     }
 }

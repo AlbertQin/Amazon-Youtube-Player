@@ -4,5 +4,6 @@ handlers\HelpIntentHandler.class
 YoutubePlayerStreamHandler.class
 handlers\YoutubePlayIntentHandler.class
 handlers\Downloader.class
+handlers\YoutubeStopIntentHandler.class
 handlers\SessionEndedRequestHandler.class
 handlers\CancelandStopIntentHandler.class
