@@ -4,12 +4,9 @@
     <list default="true" id="4e6d0272-580c-44a9-9b03-a85aff54a287" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/handlers/YoutubePlayIntentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/YoutubePlayIntentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/handlers/YoutubeStopIntentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/YoutubeStopIntentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/AmazonYoutubePlayer-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/AmazonYoutubePlayer-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/AmazonYoutubePlayer-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/AmazonYoutubePlayer-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/handlers/YoutubePlayIntentHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/handlers/YoutubePlayIntentHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/handlers/YoutubePlayIntentHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
-              <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+            <state relative-caret-position="544">
+              <caret line="55" column="73" selection-start-line="55" selection-start-column="73" selection-end-line="55" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,6 +141,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Downloader.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/handlers/YoutubeStopIntentHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/handlers/YoutubeSkipIntentHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/handlers/YoutubePlayIntentHandler.java" />
       </list>
     </option>
@@ -384,16 +382,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/handlers/YoutubeSkipIntentHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/handlers/YoutubePlayIntentHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+        <state relative-caret-position="544">
+          <caret line="55" column="73" selection-start-line="55" selection-start-column="73" selection-end-line="55" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
