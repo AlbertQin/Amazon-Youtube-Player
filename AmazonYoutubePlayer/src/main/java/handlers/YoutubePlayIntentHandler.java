@@ -66,7 +66,9 @@ public class YoutubePlayIntentHandler implements RequestHandler {
         }
 
         return input.getResponseBuilder()
-                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("REPLACE_ALL"), (long) 0, "", "001", url)
+                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "", "001", url)
+                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "001", "002", url)
+                .addAudioPlayerPlayDirective(PlayBehavior.fromValue("ENQUEUE"), (long) 0, "002", "003", url)
                 .build();
     }
 }
