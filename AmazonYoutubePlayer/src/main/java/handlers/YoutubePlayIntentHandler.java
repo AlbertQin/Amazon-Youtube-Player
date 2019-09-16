@@ -2,7 +2,9 @@ package handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.interfaces.audioplayer.PlayBehavior;
 import com.amazon.ask.request.Predicates;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -15,6 +17,7 @@ import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExt
 import org.schabi.newpipe.extractor.utils.Localization;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
@@ -36,9 +39,12 @@ public class YoutubePlayIntentHandler implements RequestHandler {
         YoutubeSearchExtractor searchExtractor;
         ListExtractor.InfoItemsPage<InfoItem> itemsPage;
 
+        IntentRequest intentRequest = (IntentRequest) input.getRequestEnvelope().getRequest();
+        Map<String, Slot> slots = intentRequest.getIntent().getSlots();
+
         NewPipe.init(Downloader.getInstance(), new Localization("GB", "en"));
         try {
-            searchExtractor = (YoutubeSearchExtractor) YouTube.getSearchExtractor("pewdiepie");
+            searchExtractor = (YoutubeSearchExtractor) YouTube.getSearchExtractor(slots.get("video").getValue());
             searchExtractor.fetchPage();
             itemsPage = searchExtractor.getInitialPage();
 
