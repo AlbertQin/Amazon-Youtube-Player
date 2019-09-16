@@ -3,6 +3,7 @@ package handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.interfaces.audioplayer.ClearBehavior;
 import com.amazon.ask.request.Predicates;
 
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class YoutubeStopIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         return input.getResponseBuilder()
-                .addAudioPlayerStopDirective()
+                .addAudioPlayerClearQueueDirective(ClearBehavior.CLEAR_ALL)
                 .build();
     }
 }
