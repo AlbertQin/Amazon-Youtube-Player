@@ -54,20 +54,22 @@ public class YoutubePlayIntentHandler implements RequestHandler {
             }
 
             InfoItem firstInfoItem = itemsPage.getItems().get(skip + 0);
-            InfoItem secondInfoItem = itemsPage.getItems().get(skip + 1);
 
-            InfoItem playerItem = (firstInfoItem instanceof ChannelInfoItem) ? secondInfoItem
-                    : firstInfoItem;
+            int increment = 0;
+            while(firstInfoItem instanceof  ChannelInfoItem) {
+                firstInfoItem = itemsPage.getItems().get(skip + increment);
+                increment++;
+            }
 
-            playerItem.getInfoType();
+            firstInfoItem.getInfoType();
             extractor = (YoutubeStreamExtractor) YouTube
-                    .getStreamExtractor(playerItem.getUrl());
+                    .getStreamExtractor(firstInfoItem.getUrl());
 
             extractor.fetchPage();
 
             url = extractor.getAudioStreams().get(0).url;
 
-            speechText = "Playing " + playerItem.getName() + " on Youtube";
+            speechText = "Playing " + firstInfoItem.getName() + " on Youtube";
 
         } catch (ExtractionException | IOException e) {
             e.printStackTrace();
